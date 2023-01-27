@@ -1,6 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Configure 'rails notes' to inspect Cucumber files
+  config.annotations.register_directories('features')
+  config.annotations.register_extensions('feature') { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
+
   config.hosts << "a323082a321241f7a96040b4dd22e228.vfs.cloud9.us-east-1.amazonaws.com"
   # Settings specified here will take precedence over those in config/application.rb.
 
