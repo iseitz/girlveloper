@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %title Welcome to Girlveloper platform
+  %body
+    .container
+      %header
+        %h1
+          %i.fa-solid.fa-circle-nodes
+          Welcome to Code School
+      %main
+        / This allws you to add the links or marks only available for screen readers it is the bootstrap class for that
+        %a.sr-only.sr-only-focusable{:href => "#content"} Description of the school easy to read for screenreaders
+        %p You are in the right place if you always wanted to learn how to code but did ot know where to start.
+        %p Our mission is to provide the best education in coding, helping students of all levels achieve their goals.
+        %p Whether you're just starting out, or are a seasoned professional, we have courses and resources that will take you to the next level. Our curriculum is designed by industry experts and is constantly updated to reflect the latest technologies and best practices.
+        %p Our community is a supportive and inclusive place where you can connect with other coders, share your projects, and receive feedback. Join us today and start coding your future!
+      %footer
+        %p © 2023 Code School. All rights reserved.
+        = link_to root_path, class: "btn btn-lg btn-warning" do
+          Privacy Policy
+          %i.fa-solid.fa-file
