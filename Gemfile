@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'haml-rails', '~> 2.0'
 gem 'net-http'
 gem 'html2haml'
+gem 'simple_form'
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

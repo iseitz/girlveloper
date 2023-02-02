@@ -7,4 +7,5 @@ Feature: Create tutorial
     And I am logged in
     When I create a tutorial record
     Then I should see a record of the tutorial and a confirmation message
-    And I should receive the confirmation via email that I created a new tutorial
+    And I should receive the confirmation via email that I created a new tutorial 
+    And The tutorial should have a title and the description
