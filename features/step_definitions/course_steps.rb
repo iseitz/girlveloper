@@ -11,14 +11,14 @@ end
 Given('I am logged in') do
   visit "/"
   fill_in "user_email", with: "irenika@gmail.com"
-  fill_in "user_password", with: "secret12345"
+  fill_in "user_password", with: "123456"
   click_on "user_signin"
 end
 
 When('I create a course record with title and description') do
   visit "/"
+  expect(page).to have_content("If you are an authorized teacher add your course here")
   click_on "add_new_course"
-  
 end
 
 Then('I should see a record of the course and a confirmation message') do

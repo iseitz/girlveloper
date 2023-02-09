@@ -16,7 +16,16 @@
         %p You are in the right place if you always wanted to learn how to code but did ot know where to start.
         %p Our mission is to provide the best education in coding, helping students of all levels achieve their goals.
         %p Whether you're just starting out, or are a seasoned professional, we have courses and resources that will take you to the next level. Our curriculum is designed by industry experts and is constantly updated to reflect the latest technologies and best practices.
-        %p Our community is a supportive and inclusive place where you can connect with other coders, share your projects, and receive feedback. Join us today and start coding your future!
+        %p Our community is a supportive and inclusive place where you can connect with other coders, share your projects, and receive feedback.
+        %p Join us today and start coding your future!
+        %p If you are an authorized teacher add your course here:
+      = link_to new_course_path, id: "add_new_course", calss: "btn btn-sucess" do
+        .fa.fa-book
+        Add Course
+        %p If you are a student check your courses here:
+      = link_to courses_path, id: "all_courses", calss: "btn btn-sucess" do
+        .fa.fa-book
+        Check Courses
       %footer
         %p © 2023 Code School. All rights reserved.
         = link_to root_path, class: "btn btn-lg btn-warning" do
