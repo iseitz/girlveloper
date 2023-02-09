@@ -1,19 +1,18 @@
 Given('I have an account with course creator rights') do
   visit "/"
-  click_on "Sign Up"
-  fill_in "Email", with: "irenika@gmail.com"
-  find_field('Password*').set(123456)
-
-  fill_in "Password confirmation", with: "123456"
-  click_on "user-registraion-submit"
-  click_on "user-signout"
+  click_on "user-registration"
+  fill_in "user_email", with: "irenika@gmail.com"
+  fill_in "user_password", with: "123456"
+  fill_in "user_password_confirmation", with: "123456"
+  click_on "user_registration_submit"
+  click_on "user_signout"
 end
 
 Given('I am logged in') do
   visit "/"
-  fill_in "user-email", with: "irenika@gmail.com"
-  fill_in "user-password", with: "secret12345"
-  click_on "user-logout"
+  fill_in "user_email", with: "irenika@gmail.com"
+  fill_in "user_password", with: "secret12345"
+  click_on "user_signin"
 end
 
 When('I create a course record with title and description') do

@@ -1,3 +1,4 @@
+
 Feature: Create course
   
   In order to be able to create a course I want to be able to log in and add a course with details on the admins page for course creation.
