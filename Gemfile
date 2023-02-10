@@ -35,6 +35,7 @@ gem 'html2haml'
 gem 'simple_form'
 gem 'devise'
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -43,6 +44,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'faker'
 end
 
 group :development do
@@ -79,5 +81,4 @@ group :test do
   gem 'launchy'
   gem 'timecop'
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'faker'
 end
