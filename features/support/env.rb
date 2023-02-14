@@ -119,5 +119,8 @@ end
 Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.asset_host = "http://localhost:3001"
 
+# Uncomment out the line below every time you need to create a screenshot of the page that fails
+# Capybara::Screenshot.autosave_on_failure = false
+
 #Cucumber FactoryBot need to add this but it is already added in the rails helper
 #World(FactoryBot::Syntax::Methods)
