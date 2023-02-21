@@ -1,33 +1,84 @@
-!!!
-%html
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "UTF-8"}/
-    %title Welcome to Girlveloper platform
-  %body
-    .container
-      %header
-        %h1
-          %i.fa-solid.fa-circle-nodes
-          Welcome to Code School
-      %main
-        / This allws you to add the links or marks only available for screen readers it is the bootstrap class for that
-        %a.sr-only.sr-only-focusable{:href => "#content"} Description of the school easy to read for screenreaders
-        %p You are in the right place if you always wanted to learn how to code but did ot know where to start.
-        %p Our mission is to provide the best education in coding, helping students of all levels achieve their goals.
-        %p Whether you're just starting out, or are a seasoned professional, we have courses and resources that will take you to the next level. Our curriculum is designed by industry experts and is constantly updated to reflect the latest technologies and best practices.
-        %p Our community is a supportive and inclusive place where you can connect with other coders, share your projects, and receive feedback.
-        %p Join us today and start coding your future!
-        %p If you are an authorized teacher add your course here:
-      = link_to new_course_path, id: "add_new_course", calss: "btn btn-sucess" do
-        .fa.fa-book
-        Add Course
-        %p If you are a student check your courses here:
-      = link_to courses_path, id: "all_courses", calss: "btn btn-sucess" do
-        .fa.fa-book
-        Check Courses
-      %footer
-        %p © 2023 Code School. All rights reserved.
-        = link_to root_path, class: "btn btn-lg btn-warning" do
-          Privacy Policy
-          %i.fa-solid.fa-file
+
+.jumbotron
+  .display-4
+  Welcome to girlveloper platform. Let's learn something exciting today!
+
+  %p
+  .form-inline.my-2.my-lg-0
+    = form_tag(courses_path, method: :get) do
+      .input-group
+        = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+        %span.input-group-append
+          %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
+  %p
+
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+      /.fa.fa-brain
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
+
+%hr
+%h2
+  Popular courses
+.card-rows
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+    %p
+
+%hr
+%h2 
+  Top rated courses
+.card-columns 
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+    %p
+
+%hr
+%h2 
+  Latest courses
+.card-columns
+  - @latest_courses.each do |course|
+    = render 'courses/course', course: course
+    %p
+
+%hr
+
+.p-4
+  = link_to new_course_path, id: "add_new_course", calss: "btn btn-sucess" do
+    .fa.fa-book
+    Add Course
+    %p If you are a student check your courses here:
+  = link_to courses_path, id: "all_courses", calss: "btn btn-sucess" do
+    .fa.fa-book
+    Check Courses
+  %footer
+    %p © 2023 Code School. All rights reserved.
+    = link_to root_path, class: "btn btn-lg btn-warning" do
+      Privacy Policy
+      %i.fa-solid.fa-file
