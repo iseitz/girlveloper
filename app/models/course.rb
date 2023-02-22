@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   has_rich_text :description
   belongs_to :user
   # after_validation :validate_course_decription
+  extend FriendlyId
+  friendly_id :title, use: :slugged
   
   def to_s
     title 

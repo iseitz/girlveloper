@@ -34,6 +34,7 @@ gem 'net-http'
 gem 'html2haml'
 gem 'simple_form'
 gem 'devise'
+gem 'friendly_id', '~> 5.2.4'
 
 
 group :development, :test do
