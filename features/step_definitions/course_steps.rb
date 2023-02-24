@@ -10,6 +10,8 @@ end
 
 Given('I am logged in') do
   visit "/"
+  click_on "user_login"
+  expect(page).to have_content("Log in")
   fill_in "user_email", with: "irenika@gmail.com"
   fill_in "user_password", with: "123456"
   click_on "user_signin"
@@ -17,7 +19,10 @@ end
 
 When('I create a course record with title and description') do
   visit "/"
-  expect(page).to have_content("If you are an authorized teacher add your course here")
+  expect(page).to have_content("irenika@gmail.com")
+  expect(page).to_not have_content("Log in")
+  expect(page).to have_content("Welcome to girlveloper platform. Let's learn something exciting today!")
+  expect(page).to have_content("Popular courses")
   click_on "add_new_course"
   expect(page).to have_content("New course")
   fill_in "course_title", with: "My new course for coding 1"
@@ -31,7 +36,7 @@ When('I create a course record with title and description') do
   expect(page).to have_content("My new course for coding 1")
   expect(page).to have_content("description of my test course")
   expect(page).to have_content("Edit")
-  expect(page).to have_content("Back")
+  expect(page).to have_content("Destroy")
 end
 
 Then('I should see a record of the course and a confirmation message') do
