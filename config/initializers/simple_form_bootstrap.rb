@@ -13,7 +13,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'btn btn-success'
 
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = 'form-check-label'
@@ -105,7 +105,7 @@ SimpleForm.setup do |config|
     b.optional :minlength
     b.optional :readonly
     b.use :label, class: 'form-label'
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :input, class: 'form-control'
     b.use :full_error, wrap_with: { class: 'invalid-feedback' }
     b.use :hint, wrap_with: { class: 'form-text' }
   end
@@ -115,7 +115,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.use :label, class: 'form-label'
-    b.use :input, class: 'form-select', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :input, class: 'form-select'
     b.use :full_error, wrap_with: { class: 'invalid-feedback' }
     b.use :hint, wrap_with: { class: 'form-text' }
   end
@@ -126,7 +126,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'form-label'
     b.wrapper class: 'd-flex flex-row justify-content-between align-items-center' do |ba|
-      ba.use :input, class: 'form-select mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :input, class: 'form-select mx-1'
     end
     b.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { class: 'form-text' }
@@ -139,7 +139,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.optional :step
     b.use :label, class: 'form-label'
-    b.use :input, class: 'form-range', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :input, class: 'form-range'
     b.use :full_error, wrap_with: { class: 'invalid-feedback' }
     b.use :hint, wrap_with: { class: 'form-text' }
   end
@@ -158,7 +158,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'col-sm-3 col-form-label'
     b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :input, class: 'form-control'
       ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
       ba.use :hint, wrap_with: { class: 'form-text' }
     end
@@ -170,7 +170,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.wrapper :grid_wrapper, class: 'col-sm-9 offset-sm-3' do |wr|
       wr.wrapper :form_check_wrapper, class: 'form-check' do |bb|
-        bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+        bb.use :input, class: 'form-check-input'
         bb.use :label, class: 'form-check-label'
         bb.use :full_error, wrap_with: { class: 'invalid-feedback' }
         bb.use :hint, wrap_with: { class: 'form-text' }

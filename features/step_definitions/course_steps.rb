@@ -28,9 +28,10 @@ When('I create a course record with title and description') do
   fill_in "course_title", with: "My new course for coding 1"
   expect(page).to have_css '.trix-content'
   # expect(page).to have_css 'course_description_trix_input_course'
-  find(:xpath, "//*[@id='course_description_trix_input_course']", visible: false).set("description of my test course")
+  find(:xpath, "//*[@id='course_description_trix_input_course']", visible: false).set("long description of my test course")
   # screenshot_and_save_page
   sleep 3
+  fill_in "course_short_description", with: "description of my test course"
   click_on "course_submit"
   expect(page).to have_content("Course was successfully created.")
   expect(page).to have_content("My new course for coding 1")
