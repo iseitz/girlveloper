@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'friendly_id', '~> 5.2.4'
 gem 'ransack'
+gem 'public_activity'
 
 
 group :development, :test do
