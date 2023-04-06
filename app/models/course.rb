@@ -7,6 +7,26 @@ class Course < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
   
+  LANGUAGES = [:"English", :"Russian", :"French", :"Bhasa Indonesian"]
+  
+  def self.languages
+    LANGUAGES.map { |language| [language, language] }
+  end
+
+  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  
+  def self.levels
+    LEVELS.map { |level| [level, level] }
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["users"]
+  end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "title", "cdescription", "short_description", "language", "level", "price", "user", "user_email"]
+  end
+  
   def to_s
     title 
   end
