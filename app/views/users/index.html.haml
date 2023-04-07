@@ -1,3 +1,10 @@
+%h3
+  .text-center
+    Users
+    .badge.bg-secondary
+      = @users.count
+%p
+%br
 .form-inline
   = search_form_for @q do |f|
     = f.search_field :email_cont, placeholder: 'email'
@@ -36,4 +43,5 @@
 .card-columns 
   -@users.each do |user|
     = render 'users/user', user: user
+    %p
   
