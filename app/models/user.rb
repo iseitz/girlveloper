@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
-
+         
+  rolify
+  after_create :assign_default_role
   has_many :courses
-  
   
   def to_s
     email
@@ -21,5 +22,16 @@ class User < ApplicationRecord
   
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "id", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "updated_at"]
+  end
+
+  def assign_default_role
+    if User.count == 1
+      self.add_role(:admin) if self.roles.blank?
+      self.add_role(:teacher)
+      self.add_role(:student)
+    else
+     self.add_role(:student) if self.roles.blank?
+     #self.add_role(:teacher) # if you want any user to be able to create own courses
+    end
   end
 end
