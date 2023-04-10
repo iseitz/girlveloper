@@ -15,9 +15,7 @@ class CoursePolicy < ApplicationPolicy
   end
   
   def edit?
-    if @user
-      @user.has_role?:admin || @record.user == @user
-    end
+    @user&.has_role?(:admin) || @record.user == @user
   end
   
   def new?
