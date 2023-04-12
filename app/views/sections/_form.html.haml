@@ -5,7 +5,10 @@
 
   .form-inputs
     = f.input :title
-    = f.input :overview
+    /= f.input :overview
+    = f.label :overview, id: "section_overview"
+    = f.rich_text_area :overview
+    %small= f.error :description, class: 'text-danger'
     /= f.association :course
     /= f.association :course, :as => :collection_select, collection: Course.all.where('user_id <>?', current_user), :input_html => {:class => "input-small"}, :label => "course"
     /= f.association :course, :as => :collection_select, collection: Course.all.map { |c| c if c.user_id == current_user.id }.compact, include_blank: false, :label => "Course"

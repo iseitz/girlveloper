@@ -8,6 +8,8 @@ class Section < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   
+  has_rich_text :overview
+  
   def to_s
     title 
   end

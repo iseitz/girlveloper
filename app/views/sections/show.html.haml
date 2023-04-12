@@ -1,4 +1,10 @@
-%p#notice= notice
+= link_to 'Courses', courses_path
+\|
+=link_to @section.course.title, course_path(@section.course)
+\|
+=link_to @section.title, section_path(@section)
+.row 
+
 = render 'sections/section', section: @section
 
 
