@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @sections = @course.sections
   end
 
   def new

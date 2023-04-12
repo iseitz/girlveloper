@@ -1,0 +1,10 @@
+.card-header 
+  = link_to section.title, section
+.card-body
+  = section.overview
+  = section.course
+// - if current_user
+//   - if policy(section).edit?
+//     .card-footer
+//       %td= link_to 'Edit', edit_section_path(section), class: 'btn btn-sm btn-warning'
+//       %td= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'

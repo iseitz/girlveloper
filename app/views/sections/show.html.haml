@@ -1,0 +1,6 @@
+%p#notice= notice
+= render 'sections/section', section: @section
+
+
+\|
+= link_to 'Back to course', course_path(@section.course)

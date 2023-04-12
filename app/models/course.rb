@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { :minimum => 5 }
   has_rich_text :description
   belongs_to :user
+  has_many :sections, dependent: :destroy
   # after_validation :validate_course_decription
   extend FriendlyId
   friendly_id :title, use: :slugged

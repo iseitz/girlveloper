@@ -4,7 +4,17 @@
 \|
 =link_to @course.title, course_path(@course)
 .row 
-  = render 'courses/course', course: @course
+  .col-lg-6
+    = render 'courses/course', course: @course
+  .col-lg-6
+    .card
+      .card-header 
+        %h5 Course content:
+        - if current_user
+          - if policy(@course).edit?
+            = link_to "Add section", new_section_path(course_id: @course.id)
+        - @sections.each do |section|
+          = render 'sections/section', section: section
 
 
 

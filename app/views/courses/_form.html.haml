@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :title, id: "course_title"
-    = f.label :description, id: "course_description"
+    = f.label :what_will_students_learn, id: "course_description"
     = f.rich_text_area :description
     %small= f.error :description, class: 'text-danger'
     = f.input :short_description
