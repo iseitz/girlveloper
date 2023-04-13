@@ -2,6 +2,8 @@
 
 = render 'form'
 
-= link_to 'Show', @section
+%p
+
+= link_to 'Show lesson', course_section_path(@course, @section)
 \|
-= link_to 'Back', sections_path
+= link_to 'Back to course', course_path(@section.course)

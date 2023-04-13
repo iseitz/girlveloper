@@ -14,6 +14,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    @course = Course.friendly.find(params[:course_id])
   end
 
   # GET /sections/1/edit
@@ -24,10 +25,11 @@ class SectionsController < ApplicationController
   # POST /sections or /sections.json
   def create
     @section = Section.new(section_params)
-
+    @course = Course.friendly.find(params[:course_id])
+    @section.course_id = @course.id
     respond_to do |format|
       if @section.save
-        format.html { redirect_to section_url(@section), notice: "Section was successfully created." }
+        format.html { redirect_to course_section_path(@course, @section), notice: "Section was successfully created." }
         format.json { render :show, status: :created, location: @section }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +43,7 @@ class SectionsController < ApplicationController
     authorize @section
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to section_url(@section), notice: "Section was successfully updated." }
+        format.html { redirect_to course_section_path(@course, @section), notice: "Section was successfully updated." }
         format.json { render :show, status: :ok, location: @section }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class SectionsController < ApplicationController
     @section.destroy
 
     respond_to do |format|
-      format.html { redirect_to sections_url, notice: "Section was successfully destroyed." }
+      format.html { redirect_to course_path(@course), notice: "Section was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +66,7 @@ class SectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_section
+      @course = Course.friendly.find(params[:course_id])
       @section = Section.friendly.find(params[:id])
     end
 

@@ -2,7 +2,7 @@
 \|
 =link_to @section.course.title, course_path(@section.course)
 \|
-=link_to @section.title, section_path(@section)
+=link_to @section.title, course_section_path(@course, @section)
 .row 
 
 = render 'sections/section', section: @section

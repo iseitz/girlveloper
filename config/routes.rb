@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :sections
   devise_for :users
-  resources :courses
+  resources :courses do 
+    resources :sections
+  end
   resources :users, only: [:index, :edit, :show, :update]
   root 'sites#index'
   get 'sites/index'

@@ -10,7 +10,7 @@
         %h5 Course content:
         - if current_user
           - if policy(@course).edit?
-            = link_to "Add section", new_section_path(course_id: @course.id)
+            = link_to "Add section", new_course_section_path(@course, @section)
         - @sections.each do |section|
           = render 'sections/section', section: section
 
