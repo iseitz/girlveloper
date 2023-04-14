@@ -23,7 +23,7 @@ class SectionPolicy < ApplicationPolicy
   end
   
   def create?
-    # @user.has_role?:admin || :teacher
+    @record.course.user_id == @user.id || @user.has_role?(:admin) 
   end
   
   def destroy?

@@ -27,6 +27,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
     @course = Course.friendly.find(params[:course_id])
     @section.course_id = @course.id
+    authorize @section
     respond_to do |format|
       if @section.save
         format.html { redirect_to course_section_path(@course, @section), notice: "Section was successfully created." }
@@ -72,6 +73,6 @@ class SectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def section_params
-      params.require(:section).permit(:title, :overview, :course_id)
+      params.require(:section).permit(:title, :overview)
     end
 end
