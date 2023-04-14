@@ -1,9 +1,12 @@
-%h1 Editing section
-
-= render 'form'
-
+.card
+  .card-header
+    %h1 Editing section
 %p
+  .card-body
+    = render 'form'
+  .card-footer
+    = link_to 'Show section', course_section_path(@course, @section)
+    \|
+    = link_to 'Back to course', course_path(@section.course)
 
-= link_to 'Show lesson', course_section_path(@course, @section)
-\|
-= link_to 'Back to course', course_path(@section.course)
+
