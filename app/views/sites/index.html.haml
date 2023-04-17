@@ -1,9 +1,13 @@
+- content_for :title do
+  Girlveloper
+  \|
+  Learning to code with fun
 
 .jumbotron
   .display-4
-  Welcome to girlveloper platform. Let's learn something exciting today!
+    Welcome to girlveloper platform. Let's learn something exciting today!
 
-  %p
+  .p-4
   /.form-inline.my-2.my-lg-0
   /  = form_tag(courses_path, method: :get) do
   - if current_user

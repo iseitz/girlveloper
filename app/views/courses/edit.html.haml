@@ -1,3 +1,9 @@
+- content_for :title do
+  Girlveloper
+  \|
+  Edit 
+  =@course.title
+
 = link_to 'Courses', courses_path
 \|
 =link_to @course.title, course_path(@course)
