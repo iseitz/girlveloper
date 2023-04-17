@@ -39,6 +39,7 @@ gem 'ransack'
 gem 'public_activity'
 gem 'rolify'
 gem 'pundit'
+gem 'pagy'
 
 
 group :development, :test do

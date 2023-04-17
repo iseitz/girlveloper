@@ -3,7 +3,9 @@ class CoursesController < ApplicationController
 
   def index
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-    @courses = @ransack_courses.result.includes(:user)
+    # @courses = @ransack_courses.result.includes(:user)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    
   end
 
   def show
