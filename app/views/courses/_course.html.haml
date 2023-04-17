@@ -1,17 +1,16 @@
 .card
   .card-header
-    %h4
     .fa.fa-book
       = link_to course.title, course_path(course)
     %p
     = simple_format(course.short_description)
   .card-body
-    %h5 What you will learn?
+    What you will learn?
     
     = course.description
   .card-footer
-    .fa.fa-book
-      = course.sections.count
+    .fa.fa-tasks
+      = course.sections.count 
       lectures
   .card-footer
     .row
