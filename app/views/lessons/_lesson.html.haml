@@ -1,0 +1,9 @@
+.card
+  .card-header
+    .far.fa-circle
+    = link_to lesson.title, course_section_lesson_path(@course, @section, lesson)
+  - if policy(@section).edit?
+    .card-footer
+      %td= link_to 'Edit lesson', edit_course_section_lesson_path(@section.course, @section, lesson), class: 'btn btn-sm btn-warning text-white'
+      %td= link_to 'Destroy lesson', [@course, @section, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger text-white'
+%p

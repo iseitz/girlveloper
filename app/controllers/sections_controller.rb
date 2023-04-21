@@ -8,13 +8,16 @@ class SectionsController < ApplicationController
 
   # GET /sections/1 or /sections/1.json
   def show
-    authorize @section
+    # authorize @section
+    @lessons = @section.lessons
   end
 
   # GET /sections/new
   def new
     @section = Section.new
     @course = Course.friendly.find(params[:course_id])
+    @section.course_id = @course.id
+    authorize @section
   end
 
   # GET /sections/1/edit

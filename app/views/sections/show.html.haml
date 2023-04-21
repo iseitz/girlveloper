@@ -7,12 +7,21 @@
 \|
 =link_to @section.course.title, course_path(@section.course)
 \|
-=link_to @section.title, course_section_path(@course, @section)
+= @section.title
 %p
-.row 
-
 = render 'sections/section', section: @section
+.card  
+  .card-body
+    %h5 Section content:
+    %p
+    - @section.lessons.each do |lesson|
+      = render 'lessons/lesson', lesson: lesson
+  
+  .card-footer
+    = link_to "Add lesson", new_course_section_lesson_path(@course, @section, @lesson), class: 'btn btn-primary btn-sm btn-block p-3 mb-2 bg-gradient-primary text-white' if current_user && policy(@section).new?
 
-
-\|
+%p
 = link_to 'Back to course', course_path(@section.course)
+
+
+

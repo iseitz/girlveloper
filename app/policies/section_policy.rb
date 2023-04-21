@@ -7,7 +7,7 @@ class SectionPolicy < ApplicationPolicy
   end
   
   def show?
-    @record.course.user_id == @user.id || @user.has_role?(:admin) 
+   @record.course.user_id == @user.id || @user.has_role?(:admin)
   end 
   
   def edit?
@@ -19,7 +19,7 @@ class SectionPolicy < ApplicationPolicy
   end
   
   def new?
-    # @user.has_role?:admin || :teacher
+    @record.course.user_id == @user.id || @user.has_role?(:admin) 
   end
   
   def create?

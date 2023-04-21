@@ -1,0 +1,32 @@
+- content_for :title do
+  Girlveloper
+  \|
+  = @lesson.title
+
+= link_to 'Courses', courses_path
+\|
+=link_to @section.course.title, course_path(@section.course)
+\|
+=link_to @section.title, course_section_path(@course, @section)
+\|
+= @lesson.title
+%p
+%p
+.card
+  .card-header
+    %h3
+      = @lesson.title
+      %p
+    .card-body
+      = @lesson.description
+      %p
+      %b Views:
+      = @lesson.views
+      %p
+      %b Additional resources:
+      = @lesson.links
+  
+    .card-footer
+      = link_to 'Edit', edit_course_section_lesson_path(@section.course, @lesson.section, @lesson) if current_user && policy(@section).edit?
+      \|
+      = link_to 'Back to section', course_section_path(@section.course, @lesson.section, @lesson)

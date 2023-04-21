@@ -3,9 +3,8 @@
     .far.fa-circle
     = link_to section.title, course_section_path(@course, section)
   -if policy(section).show?
-  .card-body
-    = section.overview
-      /= section.course
+    .card-body
+      = section.overview
   - if policy(section).edit?
     .card-footer
       %td= link_to 'Edit', edit_course_section_path(@course, section), class: 'btn btn-sm btn-warning text-white'

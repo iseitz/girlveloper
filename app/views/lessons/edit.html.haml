@@ -1,0 +1,8 @@
+%h1 Editing lesson
+
+= render 'form'
+
+
+= link_to 'Show lesson', course_section_lesson_path(@course, @section, @lesson)
+\|
+= link_to 'Back to section', course_section_path(@section.course, @lesson.section, @lesson)

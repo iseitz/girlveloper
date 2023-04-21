@@ -1,5 +1,6 @@
 class Section < ApplicationRecord
   belongs_to :course
+  has_many :lessons, dependent: :destroy
   validates :title, :overview, :course, presence: true
   
   extend FriendlyId

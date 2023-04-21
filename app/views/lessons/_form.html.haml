@@ -1,0 +1,35 @@
+/-# frozen_string_literal: true
+/= simple_form_for(@lesson) do |f|
+/  = f.error_notification
+/  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+/  .form-inputs
+/    = f.input :title
+/    = f.input :description
+/    = f.input :youtube
+/    = f.input :links
+/    = f.association :section
+    
+
+/  .form-actions
+/    = f.button :submit
+
+-# frozen_string_literal: true
+
+= simple_form_for([@course, @section, @lesson]) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :title, id: "lesson_title"
+    = f.label :add_your_video_url_or_text, id: "lesson_video"
+    = f.rich_text_area :description
+    %small= f.error :description, class: 'text-danger'
+    = f.label :or_add_your_url_for, id: "lesson_youtube_video"
+    = f.input :youtube
+    = f.label :add_additional_lesson_links, id: "lesson_additional_links"
+    = f.rich_text_area :links
+    %small= f.error :description, class: 'text-danger'
+  %br
+  .form-actions
+    = f.button :submit, id: "course_submit"
