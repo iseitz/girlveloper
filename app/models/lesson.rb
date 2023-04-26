@@ -12,6 +12,9 @@ class Lesson < ApplicationRecord
   has_rich_text :description
   has_rich_text :links
   
+  has_one_attached :clip
+  has_one_attached :thumbnail
+  
   def to_s 
      title
   end

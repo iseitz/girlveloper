@@ -30,6 +30,10 @@
     = f.label :add_additional_lesson_links, id: "lesson_additional_links"
     = f.rich_text_area :links
     %small= f.error :description, class: 'text-danger'
+    = f.label :upload_your_video
+    = f.file_field :clip
+    = f.label :upload_your_thumbnail
+    = f.file_field :thumbnail
   %br
   .form-actions
     = f.button :submit, id: "course_submit"

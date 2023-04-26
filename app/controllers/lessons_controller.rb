@@ -8,14 +8,17 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1 or /lessons/1.json
   def show
+    @lesson.views = @lesson.views += 1
+    @lesson.save    
   end
 
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-    authorize @lesson
     @section = Section.friendly.find(params[:section_id])
+    @lesson.section_id = @section.id
     @course = Course.friendly.find(params[:course_id])
+    authorize @lesson
   end
 
   # GET /lessons/1/edit
@@ -26,10 +29,10 @@ class LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-    authorize @lesson
     @course = Course.friendly.find(params[:course_id])
     @section = Section.friendly.find(params[:section_id])
     @lesson.section_id = @section.id
+    authorize @lesson
 
     respond_to do |format|
       if @lesson.save
@@ -78,6 +81,6 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :description, :views, :youtube, :links)
+      params.require(:lesson).permit(:title, :description, :views, :youtube, :links, :clip, :thumbnail)
     end
 end
