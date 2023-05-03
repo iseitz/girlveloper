@@ -10,14 +10,12 @@
     = course.description
   .card-footer
     .fa.fa-tasks
-      = course.sections.count 
+      = total_lectures(course)
       lectures
   .card-footer
     .row
-      .col-md-6
-      .col-md-6
-        .text-right
-          = number_to_currency(course.price)
+      .text-center
+        = enrollment_button(course)
   .card-footer
     .row
       .col-md-6

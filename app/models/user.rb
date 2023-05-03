@@ -7,6 +7,7 @@ class User < ApplicationRecord
   rolify
   after_create :assign_default_role
   has_many :courses
+  has_many :enrollments
   
   validate :must_have_a_role, on: :update
   
@@ -42,6 +43,10 @@ class User < ApplicationRecord
   
   def online?
     updated_at > 1.minutes.ago
+  end
+  
+  def purchase(course)
+    self.enrollments.create(course: course, price: course.price)
   end
   
   private 

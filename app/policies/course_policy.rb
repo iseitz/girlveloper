@@ -7,7 +7,7 @@ class CoursePolicy < ApplicationPolicy
   end
   
   def create?
-    @user.has_role?:admin || :teacher
+    @user.has_role?(:admin) || @user.has_role?(:teacher)
   end
   
   def update?
@@ -19,7 +19,7 @@ class CoursePolicy < ApplicationPolicy
   end
   
   def new?
-    @user.has_role?:admin || :teacher
+    @user.has_role?(:admin) || @user.has_role?(:teacher)
   end
   
   def destroy?

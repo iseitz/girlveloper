@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   has_rich_text :description
   belongs_to :user
   has_many :sections, dependent: :destroy
+  has_many :enrollments
   # after_validation :validate_course_decription
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -32,6 +33,10 @@ class Course < ApplicationRecord
   
   def to_s
     title 
+  end
+  
+  def purchased(user)
+    self.enrollments.where(user_id: [user.id], course_id: [ self.id]).empty?
   end
   
   # def validate_course_decription

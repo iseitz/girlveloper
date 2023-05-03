@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :enrollments
   devise_for :users
   resources :courses do 
+    resources :enrollments, only: [:new, :create]
     resources :sections do
       resources :lessons
     end

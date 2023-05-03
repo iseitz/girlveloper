@@ -1,0 +1,16 @@
+- content_for :title do
+  Girlveloper 
+  \| 
+  New enrollment
+
+.card
+  .card-header
+    %h3
+      .fa.fa-graduation-cap
+      Purchase this course
+      = link_to @course.title, course_path(@course)
+  .card-body
+    = form_tag course_enrollments_path(@course) do
+      = submit_tag "Add to cart for $#{@course.price}", class: "btn btn-large btn-success"
+  .card-footer
+    = link_to 'Back to course', course_path(@course)

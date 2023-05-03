@@ -20,13 +20,13 @@
     .card-body
       = @lesson.description
       %p
-      - if  @lesson.clip
+      - if @lesson.clip.attached?
         %b Preview:
         = video_tag(url_for(@lesson.clip), style: 'width:100%; height:auto', controls: '')
         %p
-        
-      %b Additional resources:
-      = @lesson.links
+      -if !@lesson.links.empty?  
+        %b Additional resources:
+        = @lesson.links
       %p
     .card-footer
       = link_to 'Edit', edit_course_section_lesson_path(@section.course, @lesson.section, @lesson) if current_user && policy(@section).edit?

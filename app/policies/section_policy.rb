@@ -7,7 +7,7 @@ class SectionPolicy < ApplicationPolicy
   end
   
   def show?
-   @record.course.user_id == @user.id || @user.has_role?(:admin)
+   @record.course.user_id == @user.id || @user.has_role?(:admin) || @record.course.purchased(@user) == false
   end 
   
   def edit?
