@@ -21,4 +21,17 @@ module CoursesHelper
     course.sections.each{|section| @lectures += section.lessons.count}
     return @lectures
   end
+  
+  def review_button(course)
+    user_course = course.enrollments.where(user: current_user)
+    if current_user
+      if user_course.any?
+        if user_course.missing_review.any?
+          link_to 'Add a review', edit_enrollment_path(course.enrollments.where(user: current_user).first)
+        else 
+          link_to "See or edit your review", enrollment_path(user_course.first)
+        end
+      end 
+    end 
+  end
 end
