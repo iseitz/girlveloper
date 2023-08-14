@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :enrollments
+  resources :enrollments do
+    get :my_course_students, on: :collection
+  end
   devise_for :users
   resources :courses do 
+    get :purchased, :missing_review, :created_courses, on: :collection
     resources :enrollments, only: [:new, :create]
     resources :sections do
       resources :lessons
@@ -10,8 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :show, :update]
   root 'sites#index'
   get 'sites/index'
-  get 'sites/activity'
-  
+  get 'activity', to: 'sites#activity'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # resources :courses do
     # collection do

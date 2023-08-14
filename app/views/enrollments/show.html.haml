@@ -1,1 +1,7 @@
+= link_to 'Enrollments', enrollments_path
+\|
+=link_to @enrollment.course, enrollment_path(@enrollment)
+
+%p
 = render 'enrollments/enrollment', enrollment: @enrollment
+

@@ -12,6 +12,9 @@ class Enrollment < ApplicationRecord
   extend FriendlyId
   friendly_id :to_s, use: :slugged
   
+  validates_presence_of :rating, if: :review?
+  validates_presence_of :review, if: :rating?
+  
   scope :missing_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""])}
   
   def to_s

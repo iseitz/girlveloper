@@ -6,19 +6,19 @@
 %h3
   .text-center
     Your Course Enrollments
-    .badge.badge-info
+    .badge.bg-secondary
       = @enrollments.count
 %p
 %br
 .form-inline
-  = search_form_for @q do |f|
+  = search_form_for @q, url: @ransack_path do |f|
     = f.search_field :user_email_cont, placeholder: 'user email'
     = f.search_field :course_title_cont, placeholder: 'course title'
     = f.search_field :price_eq, placeholder: 'price'
     = f.search_field :rating_eq, placeholder: 'rating'
     = f.search_field :review_cont, placeholder: 'review'
     = f.submit
-  = link_to 'refresh', enrollments_path
+  = link_to 'refresh', @ransack_path
 
   
 %br
@@ -29,19 +29,31 @@
         %th ID
         %th
           = sort_link(@q, :user_email)
+          .fa.fa-user
         %th
           = sort_link(@q, :purchased_on)
+          .fa.fa-lock-open
         %th
           = sort_link(@q, :course_title)
+          .fa.fa-graduation-cap
         %th
           = sort_link(@q, :price)
+          .fa.fa-dollar-sign
         %th
           = sort_link(@q, :updated_at)
+          .fa.fa-clock
         %th
           = sort_link(@q, :rating)
+          .fa.fa-star
         %th 
           .text-warning.fa.fa-comment
-          Review
+          See Review
+        %th 
+          .text-warning.fa.fa-comment
+          Add Review
+        %th 
+          .text-warning.fa.fa-comment
+          Delete enrollment
 
     %tbody
       - @enrollments.each do |enrollment|
@@ -54,6 +66,9 @@
           %td
             - if enrollment.rating.present?
               = enrollment.updated_at.strftime("%d/%b/%Y, %H:%M")
+          %td
+            - if enrollment.rating.present?
+              = enrollment.rating
           %td= link_to 'See Review', enrollment
           %td= link_to 'Add Review', edit_enrollment_path(enrollment)
           %td= link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
