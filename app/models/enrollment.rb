@@ -30,6 +30,16 @@ class Enrollment < ApplicationRecord
     # column_names + ['user_email_cont', 'course_title_cont']
   end
   
+  after_save do
+    unless rating.nil? || rating.zero?
+      course.update_rating
+    end
+  end
+  
+  after_destroy do
+    course.update_rating
+  end
+  
   protected
   def cant_subscribe_to_own_course
     if self.new_record?
