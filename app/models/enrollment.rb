@@ -1,5 +1,7 @@
 class Enrollment < ApplicationRecord
-  belongs_to :course
+  belongs_to :course, counter_cache: true
+  # to update the counter number run in console/server
+  # Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
   belongs_to :user
   
   validates :user, :course, :price, presence: true
