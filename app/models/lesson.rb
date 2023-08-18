@@ -1,5 +1,7 @@
 class Lesson < ApplicationRecord
-  belongs_to :section
+  belongs_to :section, -> { includes :course }, counter_cache: true
+  # to update the counter number run in console/server
+  # Section.find_each { |section| Section.reset_counters(section.id, :lessons) }
   validates :title, :description, :section, presence: true
   accepts_nested_attributes_for :section
   

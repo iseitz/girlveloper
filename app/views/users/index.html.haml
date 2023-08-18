@@ -34,6 +34,8 @@
         %th{class: 'w-auto'}= 'last_sign_in_at'.humanize
         %th{class: 'w-auto'}= 'current_sign_in_ip'.humanize
         %th{class: 'w-auto'}= 'last_sign_in_ip'.humanize
+        %th{class: 'w-auto'}= 'courses_count'.humanize
+        %th{class: 'w-auto'}= 'enrollments_count'.humanize
         %th{class: 'w-auto'}= 'Confirmed?'
         %th{class: 'w-auto'}= 'Roles'
     %tbody
@@ -52,6 +54,8 @@
           %td{class: 'w-auto'}= user.last_sign_in_at
           %td{class: 'w-auto'}= user.current_sign_in_ip
           %td{class: 'w-auto'}= user.last_sign_in_ip
+          %td{class: 'w-auto'}= user.courses_count
+          %td{class: 'w-auto'}= user.enrollments_count
           %td{class: 'w-auto'}= user.confirmed?
           %td.w-auto 
             -user.roles.each do |role|

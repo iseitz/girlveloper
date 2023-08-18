@@ -11,11 +11,10 @@
   .card-footer
     .fa.fa-star
       = course.average_rating
-      purchased
-      = course.enrollments.count
-      times
-      Counter cache enrollments count:
+      (
+      .fa.fa-user-graduate
       = course.enrollments_count
+      )
   .card-footer
     .fa.fa-tasks
       = total_lectures(course)
