@@ -1,11 +1,12 @@
 - content_for :title do
   Girlveloper
   \| 
-  All Enrollments
-
+  = action_name.humanize
+  enrollments
 %h3
   .text-center
-    Your Course Enrollments
+    = action_name.humanize
+    enrollments
     .badge.bg-secondary
       = @enrollments.count
 %p

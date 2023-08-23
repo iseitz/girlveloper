@@ -5,44 +5,53 @@
     %p
     = simple_format(course.short_description)
   .card-body
-    What you will learn?
+    Program
     
     = course.description
   .card-footer
-    .fa.fa-star
-      = course.average_rating
-      (
-      .fa.fa-user-graduate
-      = course.enrollments_count
-      )
-  .card-footer
-    .fa.fa-tasks
-      = total_lectures(course)
-      lectures
-  .card-footer
     .row
-      .text-center
-        = enrollment_button(course)
-      .text-center
-        = review_button(course)
+      .col-md-6
+        .fa.fa-star
+          = course.average_rating
+          (
+          = course.enrollments.where.not(rating: nil).length
+          reviews
+          )
+          .fa.fa-user-graduate
+          = course.enrollments_count
+          students
+      .col-md-6
+        .fa.fa-tasks
+          = total_lectures(course)
+          lectures
+          
   .card-footer
     .row
       .col-md-6
-        .fa.fa-globe-africa
-        = course.language
+        .fa.fa-chalkboard-teacher
+        Created by:
+        = link_to course.user.username, user_path(course.user)
+      .col-md-6
+        .text-right
+          = enrollment_button(course)
+        .text-right
+          = review_button(course)
+  .card-footer
+    .row
       .col-md-6
         .text-right
           .fa.fa-signal
+          Level:
           = course.level
   .card-footer 
     .row
       .col-md-6
         .far.fa-clock
-        = course.created_at.strftime('%d-%b-%Y')
+        Last updated:
+        = course.updated_at.strftime('%d-%b-%Y')
       .col-md-6
-        .text-right
-          .fa.fa-chalkboard-teacher
-          = link_to course.user.username, user_path(course.user)
+        .fa.fa-globe-africa
+        = course.language
   - if current_user
     - if policy(course).edit?
       .card-footer

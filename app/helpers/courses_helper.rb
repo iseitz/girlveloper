@@ -3,13 +3,13 @@ module CoursesHelper
     if current_user
       #logic to buy
       if course.user == current_user
-        link_to "You created this course. View detils and analytics", course_path(course)
+        link_to "View details and analytics", course_path(course), class: 'btn btn-success'
       elsif course.enrollments.where(user: current_user).any?
-        link_to "You already purchased this course. Start learning", course_path(course)
+        link_to "Go to course and start learning", course_path(course)
       elsif course.price > 0
-        link_to number_to_currency(course.price), new_course_enrollment_path(course), class: 'btn btn-success'
+        link_to "Enroll for #{number_to_currency(course.price)}", new_course_enrollment_path(course), class: 'btn btn-success'
       else
-        link_to "Free", new_course_enrollment_path(course), class: 'btn btn-success'
+        link_to "Enroll now for Free", new_course_enrollment_path(course), class: 'btn btn-success'
       end
     else
       link_to "Check price", course_path(course), class: "btn btn-md btn-success"
@@ -27,9 +27,13 @@ module CoursesHelper
     if current_user
       if user_course.any?
         if user_course.missing_review.any?
-          link_to 'Add a review', edit_enrollment_path(course.enrollments.where(user: current_user).first)
+          link_to  edit_enrollment_path(course.enrollments.where(user: current_user).first) do
+            'Add a review'
+          end
         else 
-          link_to "See or edit your review", enrollment_path(user_course.first)
+          link_to enrollment_path(user_course.first) do
+            "See or edit your review"
+          end
         end
       end 
     end 

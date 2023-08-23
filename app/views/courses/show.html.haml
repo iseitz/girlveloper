@@ -8,18 +8,19 @@
 =link_to @course.title, course_path(@course)
 %p
 .row 
-  .col-lg-4.order-1.order-lg-1
-    = render 'courses/course', course: @course
-  .col-lg-8.order-0.order-lg-1
-    .card
-      .card-header 
-        %h5 Course content:
-        %p
-        - @sections.each do |section|
-          = render 'sections/section', section: section
-        - if policy(@course).edit?
-          = link_to "Add section", new_course_section_path(@course, @section), class: 'btn btn-primary btn-sm btn-block p-3 mb-2 bg-gradient-primary text-white'  
-        
+  = render 'courses/course', course: @course
+.row
+  %br
+.row
+  .card
+    .card-header 
+      %h5 Course content:
+      %p
+      - @sections.each do |section|
+        = render 'sections/section', section: section
+      - if policy(@course).edit?
+        = link_to "Add section", new_course_section_path(@course, @section), class: 'btn btn-primary btn-sm btn-block p-3 mb-2 bg-gradient-primary text-white'  
+      
 
 
 
