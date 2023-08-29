@@ -8,7 +8,6 @@ class Course < ApplicationRecord
   # User.find_each { |user| User.reset_counters(user.id, :courses) }
   has_many :sections, dependent: :destroy
   has_many :enrollments
-  has_many :ratings
   # after_validation :validate_course_decription
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -32,7 +31,7 @@ class Course < ApplicationRecord
   end
   
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "title", "description", "short_description", "language", "level", "price", "user", "user_email"]
+    ["created_at", "title", "description", "short_description", "language", "level", "price", "user", "user_email", "enrollments_count", "average_rating"]
   end
   
   def to_s
