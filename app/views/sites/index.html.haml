@@ -52,26 +52,47 @@
 
 %hr
 %h2
+  .fa-brands.fa-leanpub
+  My learning
+.card-rows
+  - @purchased_courses.each do |purchased_course|
+    = render 'courses/course', course: purchased_course
+    %p
+
+%hr
+%h2
+  .fa.fa-chart-line
   Popular courses
 .card-rows
-  - @courses.each do |course|
+  - @popular.each do |course|
     = render 'courses/course', course: course
     %p
 
 %hr
 %h2 
+  .fa.fa-star
   Top rated courses
 .card-columns 
-  - @courses.each do |course|
+  - @top_rated.each do |course|
     = render 'courses/course', course: course
     %p
 
 %hr
 %h2 
+  .fa.fa-clock
   Latest courses
 .card-columns
-  - @latest_courses.each do |course|
+  - @latest.each do |course|
     = render 'courses/course', course: course
+    %p
+    
+%hr
+%h2 
+  .fa.fa-blob
+  What our students say:
+.card-columns 
+  - @latest_with_good_reviews.each do |enrollment|
+    = render 'enrollments/enrollment', enrollment: enrollment
     %p
 
 %hr

@@ -1,8 +1,13 @@
 class SitesController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index]
   def index 
-    @courses = Course.all.limit(3)
-    @latest_courses = Course.all.limit(3).order(created_at: :desc)
+    @courses = Course.all.limit(5)
+    @latest_with_good_reviews = Enrollment.reviewed.latest_good_reviews
+    @latest = Course.latest
+    @enrollments = Enrollment.reviewed.order(rating: :desc, created_at: :desc).limit(5)
+    @top_rated = Course.top_rated
+    @popular = Course.popular
+    @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(5)
   end
   
   def activity

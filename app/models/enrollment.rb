@@ -20,6 +20,9 @@ class Enrollment < ApplicationRecord
   validates_presence_of :review, if: :rating?
   
   scope :missing_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""])}
+  scope :reviewed, -> { where.not(review: [0, nil, ""])}
+  scope :latest_good_reviews, -> { order(rating: :desc, created_at: :desc).limit(5)}
+  
   
   def to_s
     user.to_s + " " + course.to_s
