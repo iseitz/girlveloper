@@ -5,7 +5,10 @@ module CoursesHelper
       if course.user == current_user
         link_to "View details and analytics", course_path(course), class: 'btn btn-success'
       elsif course.enrollments.where(user: current_user).any?
-        link_to "Go to course and start learning", course_path(course)
+        link_to course_path(course) do
+          "<i class='fa fa-spinner'></i>".html_safe + " " +
+          number_to_percentage(course.progress(current_user), precision: 0)
+        end
       elsif course.price > 0
         link_to "Enroll for #{number_to_currency(course.price)}", new_course_enrollment_path(course), class: 'btn btn-success'
       else

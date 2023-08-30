@@ -6,6 +6,8 @@ class Lesson < ApplicationRecord
   validates :title, :description, :section, presence: true
   accepts_nested_attributes_for :section
   
+  # scope :course_lessons, -> { Lesson.joins(:sections).where(enrollments: {user: current_user}).order(created_at: :desc).limit(5)}
+  
   extend FriendlyId
   friendly_id :title, use: :slugged
   
@@ -24,5 +26,9 @@ class Lesson < ApplicationRecord
   
   def viewed(user)
     self.user_lessons.where(user: user).present?
+  end
+  
+  def course
+    self.section.course
   end
 end

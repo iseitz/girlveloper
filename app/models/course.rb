@@ -3,11 +3,16 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { :minimum => 5 }
   validates :title, uniqueness: true
   has_rich_text :description
+  
   belongs_to :user, counter_cache: true
   # to update the counter number run in console/server
   # User.find_each { |user| User.reset_counters(user.id, :courses) }
+ 
   has_many :sections, dependent: :destroy
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
+  has_many :lessons, through: :sections
+  has_many :user_lessons, through: :lessons
+  
   # after_validation :validate_course_decription
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -47,6 +52,12 @@ class Course < ApplicationRecord
     self.enrollments.where(user_id: [user.id], course_id: [ self.id]).any?
   end
   
+  def progress(user)
+    unless self.lessons.count == 0
+      user_lessons.where(user: user).count/self.lessons.count.to_f*100
+    end
+  end
+  
   def update_rating
     if enrollments.any? && enrollments.where.not(rating: nil).any?
       update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
@@ -54,6 +65,7 @@ class Course < ApplicationRecord
       update_column :average_rating, (0)
     end
   end
+  
   # def validate_course_decription
   #   if self.description.nil?
   #   self.errors[:description] << ["Course description can not be blanc"] 
