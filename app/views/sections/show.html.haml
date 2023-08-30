@@ -12,7 +12,7 @@
 = render 'sections/section', section: @section
 .card  
   .card-body
-    %h5 Section content:
+    %h5 Lessons in this section:
     %p
     - @section.lessons.each do |lesson|
       = render 'lessons/lesson', lesson: lesson

@@ -1,5 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :section, -> { includes :course }, counter_cache: true
+  has_many :user_lessons
   # to update the counter number run in console/server
   # Section.find_each { |section| Section.reset_counters(section.id, :lessons) }
   validates :title, :description, :section, presence: true
@@ -21,4 +22,7 @@ class Lesson < ApplicationRecord
      title
   end
   
+  def viewed(user)
+    self.user_lessons.where(user: user).present?
+  end
 end

@@ -7,7 +7,8 @@ class LessonPolicy < ApplicationPolicy
   end
   
   def show?
-    
+    # binding.pry
+    @record.section.course.user_id == @user.id || @user.has_role?(:admin) || @record.section.course.purchased(@user) == true
   end 
   
   def edit?
