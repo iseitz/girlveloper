@@ -15,7 +15,7 @@
     %h5 Lessons in this section:
     %p
     - @section.lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
+      = render 'lessons/lesson_preview', lesson: lesson
   
   .card-footer
     = link_to "Add lesson", new_course_section_lesson_path(@course, @section, @lesson), class: 'btn btn-primary btn-sm btn-block p-3 mb-2 bg-gradient-primary text-white' if current_user && policy(@section).new?

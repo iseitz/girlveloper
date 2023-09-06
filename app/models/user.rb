@@ -7,8 +7,8 @@ class User < ApplicationRecord
   rolify
   after_create :assign_default_role
   has_many :courses
-  has_many :enrollments
-  has_many :user_lessons
+  has_many :enrollments, dependent: :destroy
+  has_many :user_lessons, dependent: :destroy
   
   validate :must_have_a_role, on: :update
   

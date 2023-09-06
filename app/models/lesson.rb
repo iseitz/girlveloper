@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :section, -> { includes :course }, counter_cache: true
-  has_many :user_lessons
+  has_many :user_lessons, dependent: :destroy
   # to update the counter number run in console/server
   # Section.find_each { |section| Section.reset_counters(section.id, :lessons) }
   validates :title, :description, :section, presence: true

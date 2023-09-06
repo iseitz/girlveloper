@@ -3,11 +3,8 @@
     .fa.fa-book
       = link_to course.title, course_path(course)
     %p
-    = simple_format(course.short_description)
   .card-body
-    Program
-    
-    = course.description
+    = simple_format(course.short_description)
   .card-footer
     .row
       .col-md-6
@@ -17,41 +14,26 @@
           = course.enrollments.where.not(rating: nil).length
           reviews
           )
-          .fa.fa-user-graduate
+      .col-md-6
+        .fa.fa-user-graduate
           = course.enrollments_count
           students
+  .card-footer
+    .row
       .col-md-6
         .fa.fa-tasks
           = total_lectures(course)
           lectures
           
   .card-footer
-    .row
-      .col-md-6
-        .fa.fa-chalkboard-teacher
-        Created by:
-        = link_to course.user.username, user_path(course.user)
-      .col-md-6
-        .text-right
-          = enrollment_button(course)
-        .text-right
-          = review_button(course)
+    .fa.fa-chalkboard-teacher
+    == Created by: #{link_to course.user.username, user_path(course.user)}
   .card-footer
     .row
-      .col-md-6
-        .text-right
-          .fa.fa-signal
-          Level:
-          = course.level
-  .card-footer 
+      = enrollment_button(course)
+  .card-footer
     .row
-      .col-md-6
-        .far.fa-clock
-        Last updated:
-        = course.updated_at.strftime('%d-%b-%Y')
-      .col-md-6
-        .fa.fa-globe-africa
-        = course.language
+      = review_button(course)
   - if current_user
     - if policy(course).edit?
       .card-footer

@@ -6,20 +6,74 @@
 = link_to 'Courses', courses_path
 \|
 =link_to @course.title, course_path(@course)
-%p
-.row 
-  = render 'courses/course', course: @course
 .row
-  %br
-.row
-  .card
-    .card-header 
-      %h5 Course content:
-      %p
+  .col-lg-9.order-1.order-lg-1
+    .p-5.bg-primary.text-white.rounded
+      %h3
+        .fa.fa-graduation-cap
+        = @course.title
+      .p-3
+      .row
+      .fa.fa-clock
+      = @course.updated_at.strftime("%m/%Y")
+      .row
+      .fa.fa-globe-africa
+      = @course.language
+      .row
+      .fa.fa-signal
+      = @course.level
+      .p-3
+      = @course.short_description
+    %p
+    %h4
+      .fa.fa-tasks
+      Lessons:
+      = @course.lessons.count
+      .float-end
+        .fa.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+    %ul.list-group
       - @sections.each do |section|
         = render 'sections/section', section: section
-      - if policy(@course).edit?
-        = link_to "Add section", new_course_section_path(@course, @section), class: 'btn btn-primary btn-sm btn-block p-3 mb-2 bg-gradient-primary text-white'  
+    %p
+    %h4
+      Description and requirements:
+    .card
+      .card-body
+        .p-6
+          = @course.description
+    %p
+    %h4
+      .fa.fa-comment
+      Reviews:
+      = @enrollments_with_review.count
+    -if @enrollments_with_review.count >= 1
+      .card
+        .card-body
+        - @enrollments_with_review.each do |enrollment|
+          = render 'enrollments/enrollment', enrollment: enrollment
+      %p
+  
+  .col-lg-3.order-0.order-lg-1.pull-end
+    .sticky-top
+      = render 'courses/course_preview', course: @course
+  %p
+// .col-lg-4.order-2.order-lg-2
+  
+  
+    
+// %p
+// .row 
+//   = render 'courses/course', course: @course
+// .row
+//   %br
+// .row
+//   .card
+//     .card-header 
+//       %h5 Course content:
+//       %p
+//       - @sections.each do |section|
+//         = render 'sections/section', section: section
       
 
 

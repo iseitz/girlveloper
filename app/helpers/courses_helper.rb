@@ -30,11 +30,11 @@ module CoursesHelper
     if current_user
       if user_course.any?
         if user_course.missing_review.any?
-          link_to  edit_enrollment_path(course.enrollments.where(user: current_user).first) do
+          link_to  edit_enrollment_path(course.enrollments.where(user: current_user).first), class: 'btn btn-success' do
             'Add a review'
           end
         else 
-          link_to enrollment_path(user_course.first) do
+          link_to enrollment_path(user_course.first), class: 'btn btn-success' do
             "See or edit your review"
           end
         end
