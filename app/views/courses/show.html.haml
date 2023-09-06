@@ -27,8 +27,10 @@
     %p
     %h4
       .fa.fa-tasks
-      Lessons:
-      = @course.lessons.count
+      = pluralize(@course.sections.count, "section")
+      (
+      = pluralize(@course.lessons.count, "lecture")
+      )
       .float-end
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
@@ -45,8 +47,7 @@
     %p
     %h4
       .fa.fa-comment
-      Reviews:
-      = @enrollments_with_review.count
+      = pluralize(@enrollments_with_review.count, "review")
     -if @enrollments_with_review.count >= 1
       .card
         .card-body
