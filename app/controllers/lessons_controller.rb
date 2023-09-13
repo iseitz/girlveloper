@@ -12,6 +12,8 @@ class LessonsController < ApplicationController
     @lesson.save    
     authorize @lesson
     current_user.view_lesson(@lesson)
+    @lessons = @course.lessons
+    @sections = @course.sections
   end
 
   # GET /lessons/new

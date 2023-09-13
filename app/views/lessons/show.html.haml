@@ -12,27 +12,51 @@
 = @lesson.title
 %p
 %p
-.card
-  .card-header
-    %h3
-      = @lesson.title
-      .text-success.far.fa-check-square
-      %p
-    .card-body
-      = @lesson.description
-      %p
-      - if @lesson.clip.attached?
-        %b Preview:
-        = video_tag(url_for(@lesson.clip), style: 'width:100%; height:auto', controls: '')
+.row
+  .col-lg-9.order-1.order-lg-1
+    .card
+      .card-header
+        %h3
+          = @lesson.title
+          .text-success.far.fa-check-square
+          %p
+      .card-body
+        = @lesson.description
         %p
-      -if !@lesson.links.empty?  
-        %b Additional resources:
-        = @lesson.links
-      %p
-    .card-footer
-      = link_to 'Edit', edit_course_section_lesson_path(@section.course, @lesson.section, @lesson) if current_user && policy(@section).edit?
-      \|
-      = link_to 'Back to section', course_section_path(@section.course, @lesson.section, @lesson)
-     
-      %p{style: 'float:right;'} Views: #{@lesson.views}
-    
+        - if @lesson.clip.attached?
+          %b Preview:
+          = video_tag(url_for(@lesson.clip), style: 'width:100%; height:auto', controls: '')
+          %p
+        -if !@lesson.links.empty?  
+          %b Additional resources:
+          = @lesson.links
+        %p
+      .card-footer
+        = link_to 'Edit', edit_course_section_lesson_path(@section.course, @lesson.section, @lesson) if current_user && policy(@section).edit?
+        \|
+        = link_to 'Back to section', course_section_path(@section.course, @lesson.section, @lesson)
+       
+        %p{style: 'float:right;'} Views: #{@lesson.views}
+  
+  .col-lg-3.order-0.order-lg-1.pull-end
+    .row
+      .col-md-12
+        - @sections.each do |section|
+          .accordion
+            .accordion-item
+              %h2.accordion-header{ "id": "section-#{section.id}" }
+                %button.accordion-button{ "type": "button", "data-bs-toggle": "collapse", "data-bs-target": "#collapse-#{section.id}" }
+                  = section.title
+            .accordion-collapse.collapse{id: "collapse-#{section.id}"}
+              .accordion-body
+                %li.list-group-item
+                  - section.lessons.each do |lesson|
+                    %li.list-group-item
+                      = render 'lessons/lesson_preview', lesson: lesson  
+            
+   
+          
+      
+  
+  
+  

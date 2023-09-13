@@ -9,7 +9,7 @@ class Course < ApplicationRecord
   # User.find_each { |user| User.reset_counters(user.id, :courses) }
  
   has_many :sections, dependent: :destroy
-  has_many :enrollments, dependent: :destroy
+  has_many :enrollments, dependent: :restrict_with_error
   has_many :lessons, through: :sections
   has_many :user_lessons, through: :lessons
   
