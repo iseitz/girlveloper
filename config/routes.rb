@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   get 'sites/index'
   get 'activity', to: 'sites#activity'
   get 'statistics', to: 'sites#statistics'
+
+  namespace :charts do
+    get 'users_per_day'
+    get 'enrollments_per_day'
+    get 'course_enrollments_total'
+    get 'biggest_revenue'
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # resources :courses do
     # collection do
