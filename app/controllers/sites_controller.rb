@@ -14,4 +14,14 @@ class SitesController < ApplicationController
     redirect_to root_path, alert: 'You are not authorized to access this page' unless current_user.has_role?(:admin)
     @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc))
   end
+  
+  def statistics
+    if current_user.has_role?(:admin)
+      @users = User.all
+      @enrollments = Enrollment.all
+      @courses = Course.all
+    else
+      redirect_to root_path, alert: "You are not authorized to access this page"
+    end 
+  end
 end

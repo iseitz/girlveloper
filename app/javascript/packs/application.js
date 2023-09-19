@@ -16,6 +16,8 @@ import "bootstrap"
 
 import "@fortawesome/fontawesome-free/css/all"
 
+import "chartkick/chart.js"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

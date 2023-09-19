@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'sites#index'
   get 'sites/index'
   get 'activity', to: 'sites#activity'
+  get 'statistics', to: 'sites#statistics'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # resources :courses do
     # collection do
