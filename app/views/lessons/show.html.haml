@@ -10,6 +10,8 @@
 =link_to @section.title, course_section_path(@course, @section)
 \|
 = @lesson.title
+
+// = @lesson.user_lessons.where(user: current_user).first.impressions
 %p
 %p
 .row
