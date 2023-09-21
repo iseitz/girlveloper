@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :courses do 
-    get :purchased, :missing_review, :created_courses, on: :collection
+    get :purchased, :missing_review, :created_courses, :unapproved, on: :collection
+    member do 
+      patch :approve
+      patch :unapprove
+    end
     resources :enrollments, only: [:new, :create]
     resources :sections do
       resources :lessons
@@ -22,6 +26,15 @@ Rails.application.routes.draw do
     get 'course_enrollments_total'
     get 'biggest_revenue'
   end
+  
+  # resources :courses do
+  #   collection do
+  #     get 'published'
+  #     get 'unpublished'
+  #     get 'approved'
+  #     get 'unapproved'
+  #   end
+  # end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # resources :courses do

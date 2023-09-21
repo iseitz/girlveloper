@@ -65,6 +65,16 @@
               = link_to my_course_students_enrollments_path, class: "dropdown-item" do
                 .fa.fa-users
                 My Students   
+              = link_to unapproved_courses_path, class: "dropdown-item" do
+                .fa.fa-check
+                Needs Approval
+                .badge.badge-danger
+                = Course.unapproved.count
+              // = link_to unpublished_courses_path, class: "dropdown-item" do
+              //   .fa.fa-check
+              //   Not Published
+              //   .badge.badge-danger
+              //   = Course.unpublished.count
         - if current_user.has_role?(:admin)
           %li.nav-item.dropdown
             %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
@@ -74,6 +84,11 @@
               = link_to users_path, class: "dropdown-item" do
                 .fa.fa-users
                 Users
+              = link_to unapproved_courses_path, class: "dropdown-item" do
+                .fa.fa-check
+                Needs Approval
+                .badge.badge-danger
+                = Course.unapproved.count
               = link_to enrollments_path, class: "dropdown-item" do
                 .fa.fa-lock-open
                 Enrollments
