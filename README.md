@@ -1,6 +1,3 @@
----
-permalink: /app/views/sites/index.html.haml
----
 # girlveloper
 
 Welcome to the Girlveloper Learning Platform! This web application, built with Ruby on Rails, is designed to provide a Udemy-style online learning experience. Users can access and enroll in courses, interact with instructors, and enhance their skills in a wide range of subjects.
