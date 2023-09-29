@@ -1,5 +1,5 @@
 ---
-permalink: /app
+permalink: /app/sites/index.html.haml
 ---
 # girlveloper
 
