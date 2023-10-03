@@ -3,7 +3,7 @@ module CoursesHelper
     if current_user
       #logic to buy
       if course.user == current_user
-        link_to "View details and analytics", course_path(course), class: 'btn btn-success'
+        link_to "View statistics of your course", course_path(course), class: 'btn btn-success'
       elsif course.enrollments.where(user: current_user).any?
         link_to course_path(course) do
           "<i class='fa fa-spinner'></i>".html_safe + " " +
@@ -15,7 +15,7 @@ module CoursesHelper
         link_to "Enroll now for Free", new_course_enrollment_path(course), class: 'btn btn-success'
       end
     else
-      link_to "Check price", course_path(course), class: "btn btn-md btn-success"
+      link_to "Check price", new_course_enrollment_path(course), class: "btn btn-md btn-success"
     end
   end
   

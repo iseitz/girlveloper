@@ -38,6 +38,6 @@ class CoursePolicy < ApplicationPolicy
     @record.published && @record.approved || 
     user.present? && @user.has_role?(:admin) ||
     @user.present? && @record.user_id == @user.id ||
-    @record.purchased(@user)
+    @user.present? && @record.purchased(@user)
   end
 end
