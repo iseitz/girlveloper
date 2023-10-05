@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   validates :title, uniqueness: true
   has_rich_text :description
   has_one_attached :preview_thumbnail
+  validates :preview_thumbnail, attached: true, content_type: [ 'image/png', 'image/jpg', 'image/jpeg'], size: {less_than: 500.kilobytes, message: 'image size has to be under 500 kilobytes'}
+  
   
   belongs_to :user, counter_cache: true
   # to update the counter number run in console/server

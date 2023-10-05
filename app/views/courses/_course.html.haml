@@ -1,57 +1,61 @@
 .card
-  .card-header
-    .fa.fa-book
-      = link_to course.title, course_path(course)
-    %p
-    = simple_format(course.short_description)
   .card-body
-    Program
-    
-    = course.description
-  .card-footer
     .row
-      .col-md-6
-        .fa.fa-star
-          = course.average_rating
-          (
-          = course.enrollments.where.not(rating: nil).length
-          reviews
-          )
-          .fa.fa-user-graduate
-          = course.enrollments_count
-          students
-      .col-md-6
-        .fa.fa-tasks
-          = total_lectures(course)
-          lectures
-          
-  .card-footer
-    .row
-      .col-md-6
-        .fa.fa-chalkboard-teacher
-        Created by:
-        = link_to course.user.username, user_path(course.user)
-      .col-md-6
-        .text-right
-          = enrollment_button(course)
-        .text-right
-          = review_button(course)
-  .card-footer
-    .row
-      .col-md-6
-        .text-right
-          .fa.fa-signal
-          Level:
-          = course.level
-  .card-footer 
-    .row
-      .col-md-6
-        .far.fa-clock
-        Last updated:
-        = course.updated_at.strftime('%d-%b-%Y')
-      .col-md-6
-        .fa.fa-globe-africa
-        = course.language
+      .col-md-4
+        - if course.preview_thumbnail.attached?
+          .card-img-left
+            = image_tag course.preview_thumbnail, height: "100%", width: "100%", style: "object-fit: contain"
+      .col-md-8
+        .row
+          %h3
+            = link_to course.title, course_path(course)
+          %p
+          = simple_format(course.short_description)
+        .row
+          .col-md-6
+            .fa.fa-star
+            = course.average_rating
+            (
+            = course.enrollments.where.not(rating: nil).length
+            reviews
+            )
+          .col-md-6
+            .fa.fa-user-graduate
+            = course.enrollments_count
+            students
+            
+        .row
+          .col-md-6
+            .fa.fa-chalkboard-teacher
+            Created by:
+            = link_to course.user.username, user_path(course.user)
+          .col-md-6
+            .fa.fa-globe-africa
+            = course.language
+  
+        .row
+          .col-md-6
+            .text-right
+              .fa.fa-signal
+              Level:
+              = course.level
+          .col-md-6
+            .fa.fa-tasks
+            = total_lectures(course)
+            lectures
+        .row
+          .col-md-6
+            .far.fa-clock
+            Last updated:
+            = course.updated_at.strftime('%d-%b-%Y')
+        %br
+        .row
+          .text-right
+            = enrollment_button(course)
+          .text-right
+            = review_button(course)
+            
+  
   - if current_user
     - if policy(course).edit?
       .card-footer

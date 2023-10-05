@@ -7,23 +7,23 @@
     = simple_format(course.short_description)
   .card-footer
     .row
-      .col-md-6
+      .col-md-7
         .fa.fa-star
-          = course.average_rating
-          (
-          = course.enrollments.where.not(rating: nil).length
-          reviews
-          )
-      .col-md-6
+        = course.average_rating
+        (
+        = course.enrollments.where.not(rating: nil).length
+        reviews
+        )
+      .col-md-5
         .fa.fa-user-graduate
-          = course.enrollments_count
-          students
+        = course.enrollments_count
+        students
   .card-footer
     .row
       .col-md-6
         .fa.fa-tasks
-          = total_lectures(course)
-          lectures
+        = total_lectures(course)
+        lectures
           
   .card-footer
     .fa.fa-chalkboard-teacher

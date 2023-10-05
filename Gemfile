@@ -36,16 +36,18 @@ gem 'net-http'
 gem 'html2haml'
 gem 'simple_form'
 gem 'devise'
-gem 'friendly_id', '~> 5.2.4'
-gem 'ransack'
+gem 'friendly_id', '~> 5.2.4' #changes ID in the url to words 
+gem 'ransack' #search and sort
 gem 'public_activity'
 gem 'rolify'
 gem 'pundit'
 gem 'pagy'
-gem "chartkick"
-gem 'groupdate'
-gem 'recaptcha'
-gem 'aws-sdk-s3', require: false
+gem "chartkick" #charts
+gem 'groupdate' #group records by day/week/year
+gem 'recaptcha' #user validations to avoid bots in production
+gem 'aws-sdk-s3', require: false #save images and files in amazon s3 service for development and production
+gem 'active_storage_validations' #validate image and file uploads for active storage
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

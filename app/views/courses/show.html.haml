@@ -26,6 +26,13 @@
       = @course.short_description
     %p
     %h4
+      Program description and requirements:
+    .card
+      .card-body
+        .p-6
+          = @course.description
+    %p
+    %h4
       .fa.fa-tasks
       = pluralize(@course.sections.count, "section")
       (
@@ -38,13 +45,7 @@
       - @sections.each do |section|
         = render 'sections/section', section: section
     %p
-    %h4
-      Description and requirements:
-    .card
-      .card-body
-        .p-6
-          = @course.description
-    %p
+   
     %h4
       .fa.fa-comment
       = pluralize(@enrollments_with_review.count, "review")
@@ -56,7 +57,7 @@
       %p
   
   .col-lg-3.order-0.order-lg-1.pull-end
-    .sticky-top
+    .sticky-top.z-n1
       = render 'courses/course_preview', course: @course
   %p
 // .col-lg-4.order-2.order-lg-2

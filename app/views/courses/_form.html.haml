@@ -18,8 +18,29 @@
     = f.label :course_preview_thumbnail
     .row
     -if @course.preview_thumbnail.attached?
-      = image_tag @course.preview_thumbnail, width: "250px"
+      .row
+        .col.col-lg-6
+          = image_tag @course.preview_thumbnail, width: "250px"
+        .col.col.col-lg-2
+          .row
+            Content type:
+            = @course.preview_thumbnail.content_type
+            // = @course.preview_thumbnail.key
+          .row
+            File name:  
+            = @course.preview_thumbnail.filename
+          .row
+            Width, px:
+            = @course.preview_thumbnail.metadata[:width]
+          .row
+            Height, px:
+            = @course.preview_thumbnail.metadata[:height]
+          .row  
+            Bytes:
+            = @course.preview_thumbnail.byte_size
+      
     = f.file_field :preview_thumbnail, id: "preview_thumbnail"
+    %small= f.error :preview_thumbnail, class: 'text-danger'
     %br
     %br
     = f.input :published
