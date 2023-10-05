@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { :minimum => 5 }
   validates :title, uniqueness: true
   has_rich_text :description
+  has_one_attached :preview_thumbnail
   
   belongs_to :user, counter_cache: true
   # to update the counter number run in console/server

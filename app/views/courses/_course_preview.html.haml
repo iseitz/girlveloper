@@ -1,7 +1,7 @@
 .card
   .card-header
-    .fa.fa-book
-      = link_to course.title, course_path(course)
+    -if @course.preview_thumbnail.attached?
+      = image_tag @course.preview_thumbnail, width: "250px"
     %p
   .card-body
     = simple_format(course.short_description)
