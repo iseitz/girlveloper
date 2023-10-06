@@ -6,7 +6,7 @@ ruby '2.7.8'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
 # Use postgresql for a database
-gem 'pg'
+gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -34,14 +34,14 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'haml-rails', '~> 2.0'
 gem 'net-http'
 gem 'html2haml'
-gem 'simple_form'
+gem 'simple_form' # creating forms made easier
 gem 'devise'
-gem 'friendly_id', '~> 5.2.4' #changes ID in the url to words 
+gem 'friendly_id', '~> 5.2.4' # nice URLs and hide IDs
 gem 'ransack' #search and sort
-gem 'public_activity'
-gem 'rolify'
-gem 'pundit'
-gem 'pagy'
+gem 'public_activity' # see all activity in the app
+gem 'rolify' # give users roles (admin, teacher, student)
+gem 'pundit' # authorization (different roles have different accesses)
+gem 'pagy' # pagination
 gem "chartkick" #charts
 gem 'groupdate' #group records by day/week/year
 gem 'recaptcha' #user validations to avoid bots in production
@@ -72,7 +72,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rspec'
-  gem 'rubocop-rails'
+  gem 'rubocop-rails', require: false
   gem 'bullet'
   gem 'brakeman'
   gem 'reek'
