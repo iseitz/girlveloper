@@ -525,7 +525,7 @@ DEPENDENCIES
   net-http
   pagy
   pdf-inspector
-  pg
+  pg (>= 0.18, < 2.0)
   pry-byebug
   pry-doc
   pry-rails
@@ -557,7 +557,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.7.8p225
+   ruby 3.0.1p64
 
 BUNDLED WITH
    2.4.20
