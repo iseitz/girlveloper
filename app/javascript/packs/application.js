@@ -14,7 +14,7 @@ import "stylesheets/application"
 
 import "bootstrap"
 
-import "@fortawesome/fontawesome-free/css/all"
+import "@fortawesome/fontawesome-free/js/all"
 
 import "chartkick/chart.js"
 
