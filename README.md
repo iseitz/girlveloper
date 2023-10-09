@@ -22,7 +22,7 @@ Welcome to the Girlveloper Learning Platform! This web application, built with R
 
 ## Demo
 
-[[Link to live demo](https://iseitz.github.io/girlveloper/)](#)
+[[Link to live demo](https://girlveloper-90fb34f97b30.herokuapp.com/)](#)
 
 ## Technologies Used
 
