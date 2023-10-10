@@ -63,7 +63,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "girlveloper_production"
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.default_url_options = {host: "girlveloper-90fb34f97b30.herokuapp.com", protocol: "https"}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'email-smtp.us-east-1.amazonaws.com',
+    user_name: '#{Rails.application.credentials[Rails.env.to_sym][:ses][:smtp_credentials_user_name]}',
+    password: '#{Rails.application.credentials.[Rails.env.to_sym][:ses][:smtp_credentials_password]}',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
