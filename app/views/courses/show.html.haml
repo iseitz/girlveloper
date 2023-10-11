@@ -8,7 +8,7 @@
 =link_to @course.title, course_path(@course)
 .row
   .col-lg-9.order-1.order-lg-1
-    .p-5.bg-primary.text-white.rounded
+    .p-5.bg-dark.bg-gradient.text-white.rounded
       %h3
         .fa.fa-graduation-cap
         = @course.title
@@ -22,8 +22,6 @@
       .row
       .fa.fa-signal
       = @course.level
-      .p-3
-      = @course.short_description
     %p
     %h4
       Program description and requirements:

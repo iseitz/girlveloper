@@ -1,7 +1,7 @@
 .card
   .card-body
     .row
-      .col-md-4
+      .col-md-4.d-flex.allign-items-center
         - if course.preview_thumbnail.attached?
           .card-img-left
             = image_tag course.preview_thumbnail, height: "100%", width: "100%", style: "object-fit: contain"

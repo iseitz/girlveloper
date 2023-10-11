@@ -1,7 +1,7 @@
 .card
-  .card-header
+  .card-header.d-flex.allign-items-center
     -if @course.preview_thumbnail.attached?
-      = image_tag @course.preview_thumbnail, width: "250px"
+      = image_tag @course.preview_thumbnail, style: "width: 250px" 
     %p
   .card-body
     = simple_format(course.short_description)
