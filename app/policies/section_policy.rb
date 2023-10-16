@@ -16,7 +16,6 @@ class SectionPolicy < ApplicationPolicy
   
   def update?
     @record.course.user_id == @user.id || @user.has_role?(:admin) 
-    binding.pry
   end
   
   def new?
