@@ -3,7 +3,7 @@
     -if @course.preview_thumbnail.attached?
       = image_tag @course.preview_thumbnail, style: "width: 250px" 
     %p
-  .card-body
+  .card-body.d-flex.justify-content-center
     = simple_format(course.short_description)
   .card-footer
     .row
