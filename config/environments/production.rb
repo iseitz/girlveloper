@@ -69,21 +69,28 @@ Rails.application.configure do
     
   }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   
-  config.action_mailer.smtp_settings = {
+  # config.action_mailer.smtp_settings = {
+  #   port: 587,
+  #   address: Rails.application.credentials.dig(:aws, :production, :ses_address),
+  #   user_name: Rails.application.credentials.dig(:aws, :production, :ses_smtp_credentials_user_name),
+  #   password: Rails.application.credentials.dig(:aws, :production, :ses_smtp_credentials_password),
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
+   config.action_mailer.smtp_settings = {
     port: 587,
-    address: Rails.application.credentials.dig(:aws, :production, :ses_address),
-    user_name: Rails.application.credentials.dig(:aws, :production, :ses_smtp_credentials_user_name),
-    password: Rails.application.credentials.dig(:aws, :production, :ses_smtp_credentials_password),
+    address: smtp.gmail.com,
+    user_name: Rails.application.credentials.dig(:google, :production, :email),
+    password: Rails.application.credentials.dig(:google, :production, :password),
     authentication: :plain,
     enable_starttls_auto: true
   }
   
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
