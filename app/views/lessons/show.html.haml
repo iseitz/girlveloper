@@ -33,12 +33,12 @@
           - else 
             %video(controls="true" width="100%" preload="metadata")
               %source{src: rails_blob_url(@lesson.clip), type:"#{@lesson.clip.content_type}"}
-          %p
-          = @lesson.description
-          %p
-        -if !@lesson.links.empty?  
-          %b Additional resources:
-          = @lesson.links
+        %p
+        = @lesson.description
+        %p
+      -if !@lesson.links.empty?  
+        %b Additional resources:
+        = @lesson.links
         %p
       .card-footer
         = link_to 'Edit', edit_course_section_lesson_path(@section.course, @lesson.section, @lesson) if current_user && policy(@section).edit?
