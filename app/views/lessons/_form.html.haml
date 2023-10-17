@@ -21,7 +21,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :title, id: "lesson_title"
+    = f.input :title, input_html: { autocomplete: 'off' },  id: "lesson_title"
+    / = f.input :title, id: "lesson_title"
     = f.label :add_your_video_url_or_text, id: "lesson_video"
     = f.rich_text_area :description
     %small= f.error :description, class: 'text-danger'
@@ -30,10 +31,50 @@
     = f.label :add_additional_lesson_links, id: "lesson_additional_links"
     = f.rich_text_area :links
     %small= f.error :description, class: 'text-danger'
-    = f.label :upload_your_video
+   
+    -if @lesson.clip.attached?
+      .row
+        .col.col-lg-6
+          %p Current video:
+        .col.col.col-lg-2
+          .row
+            Content type:
+            = @lesson.clip.content_type
+          .row
+            File name:  
+            = @lesson.clip.filename
+          .row  
+            Bytes:
+            = @lesson.clip.byte_size
+    %p
+    = f.label :upload_new_video_clip
     = f.file_field :clip
-    = f.label :upload_your_thumbnail
-    = f.file_field :thumbnail
+    %p
+    
+    -if @lesson.clip_thumbnail.attached?
+      .row
+        .col.col-lg-6
+          %p Current thumbnail:
+          = image_tag @lesson.clip_thumbnail, width: "250px"
+        .col.col.col-lg-2
+          .row
+            Content type:
+            = @lesson.clip_thumbnail.content_type
+          .row
+            File name:  
+            = @lesson.clip_thumbnail.filename
+          .row
+            Width, px:
+            = @lesson.clip_thumbnail.metadata[:width]
+          .row
+            Height, px:
+            = @lesson.clip_thumbnail.metadata[:height]
+          .row  
+            Bytes:
+            = @lesson.clip_thumbnail.byte_size
+    %p
+    = f.label :upload_new_thumbnail
+    = f.file_field :clip_thumbnail
   %br
   .form-actions
     = f.button :submit, id: "course_submit"

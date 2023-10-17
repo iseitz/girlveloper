@@ -23,11 +23,18 @@
           .text-success.far.fa-check-square
           %p
       .card-body
-        = @lesson.description
-        %p
         - if @lesson.clip.attached?
           %b Preview:
-          = video_tag(url_for(@lesson.clip), style: 'width:100%; height:auto', controls: '')
+          /= video_tag(url_for(@lesson.clip), style: 'width:100%; height:auto', controls: '')
+          /= image_tag @lesson.thumbnail
+          - if @lesson.clip_thumbnail.attached?
+            %video(controls="true" poster="#{url_for @lesson.clip_thumbnail}" width="100%" preload="metadata")
+              %source{src: rails_blob_url(@lesson.clip), type:"#{@lesson.clip.content_type}"}
+          - else 
+            %video(controls="true" width="100%" preload="metadata")
+              %source{src: rails_blob_url(@lesson.clip), type:"#{@lesson.clip.content_type}"}
+          %p
+          = @lesson.description
           %p
         -if !@lesson.links.empty?  
           %b Additional resources:

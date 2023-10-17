@@ -1,12 +1,15 @@
 class Course < ApplicationRecord
   validates :title, :short_description, :language, :level, :price, presence: true
-  validates :description, presence: true, length: { :minimum => 5 }
-  validates :title, uniqueness: true
+  validates :description, presence: true, length: { minimum: 5 }
+  validates :short_description, length: { maximum: 300 }
+  validates :title, uniqueness: true, length: { maximum: 70 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
   has_rich_text :description
   has_one_attached :preview_thumbnail
-  validates :preview_thumbnail, attached: true, content_type: [ 'image/png', 'image/jpg', 'image/jpeg'], size: {less_than: 500.kilobytes, message: 'image size has to be under 500 kilobytes'}
-  
-  
+  # validates :preview_thumbnail, attached: true, content_type: [ 'image/png', 'image/jpg', 'image/jpeg'], size: {less_than: 500.kilobytes, message: 'image size has to be under 500 kilobytes'}
+  validates :preview_thumbnail, presence: true,
+    content_type: [ 'image/png', 'image/jpg', 'image/jpeg'],
+    size: { less_than: 500.kilobytes, message: 'image size has to be under 500 kilobytes' }
   belongs_to :user, counter_cache: true
   # to update the counter number run in console/server
   # User.find_each { |user| User.reset_counters(user.id, :courses) }

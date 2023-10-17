@@ -15,7 +15,7 @@
     = f.input :level, collection: Course.levels, include_blank: true
     = f.input :price
     %br
-    = f.label :course_preview_thumbnail
+    /= f.label :course_preview_thumbnail
     .row
     -if @course.preview_thumbnail.attached?
       .row
@@ -39,8 +39,9 @@
             Bytes:
             = @course.preview_thumbnail.byte_size
       
-    = f.file_field :preview_thumbnail, id: "preview_thumbnail"
+    / = f.file_field :preview_thumbnail, id: "preview_thumbnail"
     %small= f.error :preview_thumbnail, class: 'text-danger'
+    = f.input :preview_thumbnail
     %br
     %br
     = f.input :published
