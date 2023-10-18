@@ -50,10 +50,6 @@ Welcome to the Girlveloper Coding Learning Platform! This web application, built
 - Amazon SES for outbound emails and notifications.
 - Bootstrap 5 and Font Awesome for styling.
 
-## Temporary issue
-
-The app temporarily does not allow signups for new users. There is an email verification feature for new users. To send a confirmation email to a new user I am using AWS SES service and I am currently going through the authorization process to be able to send out emails in production. It requires about 2 weeks to get the verification completed. 
-
 ## Getting Started
 
 To get a local copy of the project up and running, follow these steps:
